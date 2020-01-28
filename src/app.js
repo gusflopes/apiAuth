@@ -1,9 +1,9 @@
 import 'dotenv/config';
 
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+import express from 'express';
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 mongoose.connect('mongodb://localhost/apiauth', {
   useNewUrlParser: true,
