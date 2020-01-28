@@ -4,14 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/app.js",
+    "dev": "nodemon index.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/app.js",
-    "test": "jest"
+    "test-jest": "jest",
+    "test": "NODE_ENV=test mocha --require sucrase/register --timeout 5000 __tests__/src/**/*.test.js",
+    "report": "NODE_ENV=test nyc --require sucrase/register --reporter=lcov mocha --timeout 5000 __tests__/src/**/*.test.js",
+    "nyc": "NODE_ENV=test nyc mocha --require sucrase/register --timeout 5000 __tests__/src/**/*.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cross-env": "^7.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
@@ -24,14 +28,30 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "faker": "^4.1.0",
     "jest": "^25.1.0",
+    "mocha": "^7.0.1",
     "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
     "prettier": "^1.19.1",
+    "rewire": "^4.0.1",
+    "sinon": "^8.1.1",
+    "sinon-chai": "^3.4.0",
     "sucrase": "^3.12.1"
+  },
+  "nyc": {
+    "exclude": [
+      "__tests__",
+      "node_modules"
+    ],
+    "cache": false,
+    "report-dir": "./__tests__/report"
   }
 }
