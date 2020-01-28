@@ -55,6 +55,10 @@ passport.use(
           return done(null, existingUser);
         }
 
+        // HERE I NEED TO CREATE A VERIFICATION IF THE USER IS ALREADY CREATED
+        // WITH THE LOCAL STRATEGY AND PREVENT FROM CREATING ANOTHER USER
+        // THE SAME WITH FACEBOOK
+
         console.log("User doesn't exists, we 're creating a new one. ");
 
         // If new account

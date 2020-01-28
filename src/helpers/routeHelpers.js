@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require('joi');
 
 module.exports = {
   validateBody: schema => {
@@ -11,7 +11,7 @@ module.exports = {
       if (!req.value) {
         req.value = {};
       }
-      req.value["body"] = result.value;
+      req.value.body = result.value;
       next();
     };
   },
@@ -21,7 +21,7 @@ module.exports = {
       email: Joi.string()
         .email()
         .required(),
-      password: Joi.string().required()
-    })
-  }
+      password: Joi.string().required(),
+    }),
+  },
 };
