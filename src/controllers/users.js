@@ -1,4 +1,19 @@
+import jwt from 'jsonwebtoken';
+
 const User = require('../models/User');
+
+const signToken = user => {
+  const token = jwt.sign(
+    {
+      iss: 'Gusflopes', // issuer
+      sub: user.id, // subject
+      iat: new Date().getTime(), // issued_at
+      exp: new Date().setDate(new Date().getDate() + 1), // expiration: current time + 1 day ahead
+    },
+    process.env.JWT_SECRET
+  );
+  return token;
+};
 
 module.exports = {
   signUp: async (req, res, next) => {
@@ -19,9 +34,10 @@ module.exports = {
       });
       await newUser.save();
 
-      // Respond with token
+      // Sign token
+      const token = signToken(newUser);
 
-      res.json({ user: 'created.' });
+      res.status(201).json({ message: 'User created.', token });
     } catch (error) {
       next(error);
     }
