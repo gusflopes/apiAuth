@@ -57,7 +57,7 @@ module.exports = {
   secret: async (req, res, next) => {
     try {
       console.log('I managed to get here!');
-      res.json({ secret: 'resource' });
+      res.status(200).json({ secret: 'resource' });
     } catch (error) {
       next(error);
     }

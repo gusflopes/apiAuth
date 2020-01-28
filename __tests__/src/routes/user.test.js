@@ -32,7 +32,7 @@ describe('Users route', () => {
       .request(server)
       .post(signup)
       .send(preSave);
-    expect(result.status).to.equal(200);
+    expect(result.status).to.equal(201);
     token = result.body.token;
   });
 
