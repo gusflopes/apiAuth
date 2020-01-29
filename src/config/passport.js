@@ -4,6 +4,7 @@ const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
+const FacebookTokenStrategy = require('passport-facebook-token');
 
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -65,6 +66,51 @@ passport.use(
         const newUser = new User({
           method: 'google',
           google: {
+            id: profile.id,
+            email: profile.emails[0].value,
+          },
+        });
+
+        await newUser.save();
+        done(null, newUser);
+      } catch (error) {
+        done(error, false, error.message);
+      }
+    }
+  )
+);
+
+// FACEBOOK STRATEGY
+passport.use(
+  'facebookToken',
+  new FacebookTokenStrategy(
+    {
+      clientID: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        console.log('profile', profile);
+        console.log('accessToken', accessToken);
+        console.log('refreshToken', refreshToken);
+
+        // Check whether this current user exists in our DB
+        const existingUser = await User.findOne({ 'facebook.id': profile.id });
+        if (existingUser) {
+          console.log('User already exists in our database');
+          return done(null, existingUser);
+        }
+
+        // HERE I NEED TO CREATE A VERIFICATION IF THE USER IS ALREADY CREATED
+        // WITH THE LOCAL STRATEGY AND PREVENT FROM CREATING ANOTHER USER
+        // THE SAME WITH FACEBOOK
+
+        console.log("User doesn't exists, we 're creating a new one. ");
+
+        // If new account
+        const newUser = new User({
+          method: 'facebook',
+          facebook: {
             id: profile.id,
             email: profile.emails[0].value,
           },
