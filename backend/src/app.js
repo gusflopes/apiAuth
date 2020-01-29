@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 if (process.env.NODE_ENV === 'test') {
   mongoose.connect('mongodb://localhost/apiauthTEST', {
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 const app = express();
+app.use(cors());
 
 // Middlewares
 if (!process.env.NODE_ENV === 'test') {
