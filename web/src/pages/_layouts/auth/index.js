@@ -17,41 +17,35 @@ const PaperDiv = styled(Paper)({
   alignItems: 'center',
 });
 
-const useStyles = makeStyles(theme => ({
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 const ImageGrid = styled(Grid)({
   backgroundImage: `url(https://source.unsplash.com/random)`,
   backgroundRepeat: 'no-repeat',
-
   backgroundSize: 'cover',
   backgroundPosition: 'center',
 });
+const AuthGrid = styled(Grid)({
+  height: '100%',
+  flex: 1,
+  flexDirection: 'column',
+});
 
 export default function AuthLayout({ children }) {
-  //         <img alt="123" src="https://source.unsplash.com/random" />
-
-  const classes = useStyles;
   return (
-    <RootGrid container component="main" className={classes.root}>
+    <RootGrid container component="main">
       <CssBaseline />
-      <ImageGrid item xs={false} sm={4} md={7} className={classes.image}>
-        <h1 className={classes.texto}>Teste</h1>
-      </ImageGrid>
-      <Grid item xs={12} sm={4} md={5}>
-        <Paper elevation={6}>{children}</Paper>
-      </Grid>
+      <ImageGrid item xs={false} boxShadow={6} sm={4} md={7} />
+
+      <AuthGrid
+        boxShadow={6}
+        item
+        xs={12}
+        sm={4}
+        md={5}
+        elevation={6}
+        component={PaperDiv}
+      >
+        {children}
+      </AuthGrid>
     </RootGrid>
   );
 }
