@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import PieChart from '~/components/PieChart';
+
 // import { Container } from './styles';
 import { signOut } from '~/store/modules/auth/actions';
 
@@ -15,9 +17,15 @@ export default function Home() {
     <div>
       <h1>Home Page</h1>
       <p> Testando </p>
-      <button type="button" onClick={handleSignOut}>
-        Sair do sistema
-      </button>
+      <div style={{ height: '500px', flex: 1 }}>
+        <h2 style={{ textAlign: 'center' }}>Faturamento por Cliente</h2>
+        <PieChart />
+      </div>
+      <div style={{ marginTop: '100px' }}>
+        <button type="button" onClick={handleSignOut}>
+          Sair do sistema
+        </button>
+      </div>
     </div>
   );
 }

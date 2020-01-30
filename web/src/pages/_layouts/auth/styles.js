@@ -29,6 +29,34 @@ export const Content = styled.div`
       margin-left: 30px;
       line-height: 19px;
     }
+
+    span {
+      color: #ee4d64;
+      align-self: flex-start;
+      margin: 5px 0 0 30px;
+    }
+  }
+`;
+
+export const OldContent = styled.div`
+  width: 100%;
+  max-width: 360px;
+  background: #fff;
+  text-align: center;
+  border-radius: 4px;
+  img {
+    margin-top: 50px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    strong {
+      text-align: left !important;
+      margin-top: 20px;
+      margin-left: 30px;
+      line-height: 19px;
+    }
     input {
       margin: 5px 30px 0 30px;
       background-color: #ffffff;

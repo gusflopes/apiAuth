@@ -1,12 +1,28 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+import { CustomInput } from './styles';
 import { signInRequest } from '~/store/modules/auth/actions';
 
 // import logo from '~/assets/logo.png';
+
+const useStyles = makeStyles(theme => ({
+  textField: {
+    marginLeft: '30px',
+    marginRight: '30px',
+  },
+  button: {
+    marginTop: '20px',
+    marginBottom: '20px',
+  },
+}));
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -16,6 +32,7 @@ const schema = Yup.object().shape({
 });
 
 export default function SignIn() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
@@ -31,14 +48,23 @@ export default function SignIn() {
       />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <strong>SEU E-MAIL</strong>
-        <Input name="email" placeholder="exemplo@email.com" />
-        <strong>SUA SENHA</strong>
-        <Input name="password" type="password" placeholder="*********" />
+        <TextField
+          label="E-mail"
+          name="email"
+          placeholder="exemplo@email.com"
+          className={classes.textField}
+        />
+        <TextField
+          label="Password"
+          name="password"
+          type="password"
+          placeholder="*********"
+          className={classes.textField}
+        />
 
-        <button type="submit">
+        <Button type="submit" className={classes.button}>
           {loading ? 'Carregando...' : 'Entrar no Sistema'}
-        </button>
+        </Button>
       </Form>
       <div>
         <p>Third Party Login</p>
