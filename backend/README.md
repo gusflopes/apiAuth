@@ -1,5 +1,5 @@
 # API Multiple Authentication Strategies
-## React.js Frontend
+## Backend
 
 ### Description
 This project started as a boilerplate for multiple Authentication Strategies using [Passport.js](), allowing the user to register with any of the Strategies.
@@ -8,14 +8,17 @@ The user will be allowed to register/signIn using JWT Tokens, Google OAuth2 or F
 
 ### Initial setup
 
-To run this project you'll need to have the [Backend](../backend/README.md) up and running. After following the instruction of the corresponding project, just install and run the project by typing:
+To setup this project you'll need to set the Environment Variables, especially the credentials from Google and Facebook. Just type `cp .env.example .env` and then put your credentials on the **.env** file.
+
+After that, just run the following commands to setup your MongoDB and start the project:
 
 ```bash
+docker run --name mongodb -p 27017:27017 -d -t mongo
+
 yarn
 
-yarn start
+yarn dev
 ```
-
 ### Final Comments
 Project still under development.
 
