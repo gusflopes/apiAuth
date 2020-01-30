@@ -11,13 +11,14 @@ import history from '~/services/history';
 
 import { store, persistor } from './store';
 
-// import GlobalStyle from './styles/global';
+import GlobalStyle from './styles/global';
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Router history={history}>
+          <GlobalStyle />
           <Routes />
           <ToastContainer autoClose={3000} />
         </Router>
