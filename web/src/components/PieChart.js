@@ -1,15 +1,15 @@
 import React from 'react';
-import { ResponsivePie } from '@nivo/pie';
+import { ResponsivePie, Pie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 export default function PieChart({ data }) {
   return (
-    <React.Fragment>
+    <>
       <ResponsivePie
         data={data}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-        innerRadius={0.5}
-        padAngle={0.7}
+        innerRadius={0.3}
+        padAngle={6}
         cornerRadius={3}
         colors={{ scheme: 'nivo' }}
         borderWidth={1}
@@ -22,6 +22,11 @@ export default function PieChart({ data }) {
         radialLabelsLinkHorizontalLength={24}
         radialLabelsLinkStrokeWidth={1}
         radialLabelsLinkColor={{ from: 'color' }}
+        sliceLabel={d =>
+          d.value > 1000
+            ? `${(d.value / 1000).toFixed(2)}k`
+            : d.value.toFixed(0)
+        } // Dá pra fazer um valor abreviado, ex: 17,2k
         slicesLabelsSkipAngle={10}
         slicesLabelsTextColor="#333333"
         animate
@@ -99,13 +104,14 @@ export default function PieChart({ data }) {
         ]}
         legends={[
           {
-            anchor: 'bottom',
+            anchor: 'bottom-left',
             direction: 'row',
+            translateX: -56,
             translateY: 56,
-            itemWidth: 100,
+            itemWidth: 90,
             itemHeight: 18,
             itemTextColor: '#999',
-            symbolSize: 18,
+            symbolSize: 14,
             symbolShape: 'circle',
             effects: [
               {
@@ -118,11 +124,12 @@ export default function PieChart({ data }) {
           },
         ]}
       />
-    </React.Fragment>
+    </>
   );
 }
 
 PieChart.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.array,
 };
 
@@ -131,32 +138,26 @@ PieChart.defaultProps = {
     {
       id: 'Cliente A',
       label: 'Cliente A',
-      value: 328,
+      value: 15000,
       color: 'hsl(180, 70%, 50%)',
     },
     {
       id: 'Cliente B',
       label: 'Cliente B',
-      value: 94,
+      value: 17500,
       color: 'hsl(204, 70%, 50%)',
     },
     {
       id: 'Cliente C',
       label: 'Cliente C',
-      value: 563,
+      value: 8750,
       color: 'hsl(91, 70%, 50%)',
     },
     {
       id: 'Cliente D',
       label: 'Cliente D',
-      value: 416,
+      value: 9350.15,
       color: 'hsl(18, 70%, 50%)',
-    },
-    {
-      id: 'Cliente E',
-      label: 'Cliente E',
-      value: 417,
-      color: 'hsl(182, 70%, 50%)',
     },
   ],
 };
