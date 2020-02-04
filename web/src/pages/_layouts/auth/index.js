@@ -24,22 +24,23 @@ const ImageGrid = styled(Grid)({
   backgroundPosition: 'center',
 });
 const AuthGrid = styled(Grid)({
-  height: '100%',
-  flex: 1,
-  flexDirection: 'column',
+  // height: '100%',
+  // display: 'flex',
+  // flex: 1,
+  // flexDirection: 'column',
 });
 
 export default function AuthLayout({ children }) {
   return (
     <RootGrid container component="main">
       <CssBaseline />
-      <ImageGrid item xs={false} boxShadow={6} sm={4} md={7} />
+      <ImageGrid item boxShadow={6} xs={false} sm={4} md={7} />
 
       <AuthGrid
         boxShadow={6}
         item
         xs={12}
-        sm={4}
+        sm={8}
         md={5}
         elevation={6}
         component={PaperDiv}
