@@ -9,7 +9,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#7159c1' }}>
       <h1>Home Page</h1>
 
       <p> Testando </p>
