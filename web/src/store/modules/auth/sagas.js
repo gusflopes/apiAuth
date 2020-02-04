@@ -8,9 +8,6 @@ import api from '../../../services/api';
 
 export function* signIn({ payload }) {
   try {
-
-    const continuar = yield all(setTimeout(() => {return 'time out'}, 2000));
-
     const { email, password } = payload;
 
     const response = yield call(api.post, '/users/signin', {

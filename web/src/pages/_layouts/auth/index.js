@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -34,7 +34,7 @@ export default function AuthLayout({ children }) {
   return (
     <RootGrid container component="main">
       <CssBaseline />
-      <ImageGrid item boxShadow={6} xs={false} sm={4} md={7} />
+      <ImageGrid item boxShadow={6} xs={false} sm={4} md={7} lg={8} />
 
       <AuthGrid
         boxShadow={6}
@@ -42,6 +42,7 @@ export default function AuthLayout({ children }) {
         xs={12}
         sm={8}
         md={5}
+        lg={4}
         elevation={6}
         component={PaperDiv}
       >

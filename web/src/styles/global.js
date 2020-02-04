@@ -1,7 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
-import { Form } from '@rocketseat/unform';
-import colors from './colors';
+// import colors from './colors';
 
 // import 'react-perfect-scrollbar/dist/css/styles.css';
 
