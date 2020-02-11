@@ -8,9 +8,9 @@ import { Formik } from 'formik';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-import { GoogleLogin } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
-import { signUpRequest, signFailure } from '~/store/modules/auth/actions';
+import { signUpRequest } from '~/store/modules/auth/actions';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -57,7 +57,7 @@ const schema = Yup.object().shape({
 export default function SignUp(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const loading = useSelector(state => state.auth.loading);
+  const {loading, errorMessage} = useSelector(state => state.auth);
   const {history} = props;
 
   function handleSubmit({ email, password }) {
@@ -65,14 +65,14 @@ export default function SignUp(props) {
     dispatch(signUpRequest(email, password));
   }
 
-  const responseGoogle = response => {
+  function responseGoogle(res) {
     // eslint-disable-next-line no-console
-    console.log(response);
+    console.log(res);
   };
 
-  const responseFacebook = response => {
+  function responseFacebook(res) {
     // eslint-disable-next-line no-console
-    console.log(response);
+    console.log(res);
   };
 
   return (
@@ -126,6 +126,7 @@ export default function SignUp(props) {
               <span className={classes.span}>
                 {errors.password && touched.password && errors.password}
               </span>
+              {errorMessage ? <span className={classes.span}>Erro: {errorMessage}</span> : null}
 
               <Button
                 type="submit"
@@ -158,9 +159,9 @@ export default function SignUp(props) {
         <div style={{ marginTop: '20px' }}>
           <FacebookLogin
             appId={process.env.REACT_APP_FACEBOOK_CLIENT_ID}
-            autoLoad
+            autoLoad={false}
             fields="name,email"
-            callback={() => responseFacebook}
+            callback={()=>responseFacebook}
             icon="fa-facebook"
             cssClass="fb-button"
           />
@@ -169,8 +170,8 @@ export default function SignUp(props) {
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Login com Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onSuccess={() => responseGoogle}
+            onFailure={() => responseGoogle}
             cookiePolicy="single_host_origin"
           />
         </div>

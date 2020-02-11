@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   token: null,
   signed: false,
   loading: false,
+  errorMessage: '',
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -18,6 +19,7 @@ export default function auth(state = INITIAL_STATE, action) {
       case '@auth/SIGN_UP_REQUEST': {
         draft.token = action.payload.token;
         draft.loading = true;
+        draft.errorMessage = null;
         break;
       }
       
@@ -30,6 +32,7 @@ export default function auth(state = INITIAL_STATE, action) {
 
       case '@auth/SIGN_FAILURE': {
         draft.loading = false;
+        draft.errorMessage = action.payload.errorMessage;
         break;
       }
 

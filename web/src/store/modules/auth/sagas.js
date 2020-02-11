@@ -46,7 +46,8 @@ export function* signUp({ payload }) {
     history.push('/home');
   } catch (err) {
     toast.error('Falha na autenticação.');
-    yield put(signFailure());
+    const { error } = err.response.data;
+    yield put(signFailure(error));
   }
 }
 
@@ -60,6 +61,13 @@ export function setToken({ payload }) {
     api.defaults.headers.Authorization = `Bearer: ${token}`;
   }
 }
+
+/*
+export function setError({ payload }) {
+  if (!payload) return;
+  const { errorMessage } = payload.auth;
+}
+*/
 
 export function signOut() {
   history.push('/');

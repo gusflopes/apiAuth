@@ -34,10 +34,10 @@ export default function AuthLayout({ children }) {
   return (
     <RootGrid container component="main">
       <CssBaseline />
-      <ImageGrid item boxShadow={6} xs={false} sm={4} md={7} lg={8} />
+      <ImageGrid item boxshadow={6} xs={false} sm={4} md={7} lg={8} />
 
       <AuthGrid
-        boxShadow={6}
+        boxshadow={6}
         item
         xs={12}
         sm={8}

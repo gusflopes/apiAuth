@@ -20,9 +20,10 @@ export function signInSuccess(token, user) {
   };
 }
 
-export function signFailure() {
+export function signFailure(errorMessage) {
   return {
     type: '@auth/SIGN_FAILURE',
+    payload: { errorMessage },
   };
 }
 
