@@ -15,6 +15,12 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
 
+      case '@auth/SIGN_UP_REQUEST': {
+        draft.token = action.payload.token;
+        draft.loading = true;
+        break;
+      }
+      
       case '@auth/SIGN_IN_SUCCESS': {
         draft.token = action.payload.token;
         draft.signed = true;

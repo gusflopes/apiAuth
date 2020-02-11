@@ -5,6 +5,14 @@ export function signInRequest(email, password) {
   };
 }
 
+export function signUpRequest(email, password) {
+  return {
+    type: '@auth/SIGN_UP_REQUEST',
+    payload: { email, password },
+  };
+}
+
+
 export function signInSuccess(token, user) {
   return {
     type: '@auth/SIGN_IN_SUCCESS',

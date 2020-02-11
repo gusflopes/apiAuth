@@ -58,6 +58,7 @@ export default function SignIn(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
+  const {history} = props;
 
   function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
@@ -141,7 +142,7 @@ export default function SignIn(props) {
                 disabled={!!loading}
                 size="medium"
                 className={classes.button}
-                onClick={() => alert('Navegar para SignUp')}
+                onClick={() => history.push('/auth/signup')}
               >
                 Não é cliente? Criar Conta
               </Button>
@@ -158,7 +159,7 @@ export default function SignIn(props) {
             appId={process.env.REACT_APP_FACEBOOK_CLIENT_ID}
             autoLoad
             fields="name,email"
-            callback={responseFacebook}
+            callback={() => responseFacebook}
             icon="fa-facebook"
             cssClass="fb-button"
           />
